@@ -6,6 +6,7 @@ node {
         def scannerHome = tool 'SonarQubeScanner';
         withSonarQubeEnv() {
             sh "${scannerHome}/bin/sonar-scanner"
+            echo "Teste"
         }
     }
     stage("Quality gate") {
