@@ -2,13 +2,17 @@ pipeline {
     agent none
     stages{
         stage('SCM') {
-            checkout scm
+            steps{
+                checkout scm
+            }
         }
         stage('SonarQube Analysis') {
-            def scannerHome = tool 'SonarQubeScanner';
-            withSonarQubeEnv() {
-                sh "${scannerHome}/bin/sonar-scanner"
-                echo "Teste"
+            steps{
+                def scannerHome = tool 'SonarQubeScanner';
+                withSonarQubeEnv() {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                    echo "Teste"
+                }
             }
         }
         stage("Quality gate") {
@@ -17,5 +21,4 @@ pipeline {
             }
         }
     }
-    
 }
