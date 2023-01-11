@@ -41,6 +41,24 @@ app.get('/healthz', (req, res, next) => {
     })
 })
 
+app.get('/test', (req, res, next) => {
+    let x = 42;
+    await x;
+    try {
+        doSomething();
+    } catch (ex) {  // Noncompliant
+        throw ex;
+    }
+
+    const arr = [4, 3, 2, 1];
+
+    for (let value of arr) {
+    console.log(value);
+    }
+
+
+})
+
 app.get('/host-info', (req, res, next) => res.json({host: os.hostname(), network: os.networkInterfaces()}))
 
 app.listen(3000, () => console.log('Server listening in port 3000.'))
